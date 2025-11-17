@@ -20,7 +20,7 @@ vegdata <- as.data.frame(vegdata) # turn into data.frame
 # 170 - 193 = tall woody stem
 
 # blank data.frame() to hold data
-data_new <- data.frame("point_id" = character(0), # use row number as point_id for now
+data_new <- data.frame("point_id" = character(0),
                        "class" = character(0),"direction" = character(0),
                        "species" = character(0), "count" = character(0))
 
@@ -34,12 +34,15 @@ for(i in 1:nrow(vegdata)){
     "class" = character(0),"direction" = character(0),
                        "species" = character(0), "count" = character(0))
   
+  # PointID
+  point_id_i <- i
+  
   # Basal area
   BA <- vegdata[i, 34:45] # isolate all BA data
     BA_sp <- BA[,c(1,3,5,7,9,11)] # the odd values are species IDs
     BA_n <- BA[,c(2,4,6,8,10,12)] # the even values are counts
     BA_parts <- data.frame( # make a data frame for all the data
-        point_id = rep(i, 6), # use row number as point_id for now
+        point_id = rep(point_id_i, 6),
         class = rep("basalarea", 6), # all basal area rows get "basalarea"
         direction = rep("none", 6), # direction = "none" for basal area
         species = as.character(BA_sp), # species from above
@@ -50,7 +53,7 @@ for(i in 1:nrow(vegdata)){
   # Snags    
   snag <- vegdata[i, 46]
     snag_parts <- data.frame( # make a data frame for all the data
-      point_id = i, # use row number as point_id for now
+      point_id = point_id_i,
       class = "snag", # all snag rows get "snag"
       direction = "none", # direction = "none" for snag
       species = "snag", # species = snag
@@ -61,7 +64,7 @@ for(i in 1:nrow(vegdata)){
   # Edge Trees  
   edge <- vegdata[i, 47]
     edge_parts <- data.frame( # make a data frame for all the data
-      point_id = i, # use row number as point_id for now
+      point_id = point_id_i,
       class = "basalarea_edge", # all edgetree rows get "basalarea_edge"
       direction = "none", # direction = "none" for edge trees
       species = "nodata", # species = nodata
@@ -74,7 +77,7 @@ for(i in 1:nrow(vegdata)){
   nss_sp <- nss[,c(1,3,5,7,9,11,13,15,17,19,21,23)] # the odd values are species IDs
   nss_n <- nss[,c(2,4,6,8,10,12,14,16,18,20,22,24)] # the even values are counts
   nss_parts <- data.frame( # make a data frame for all the data
-    point_id = rep(i, 12), # use row number as point_id for now
+    point_id = rep(point_id_i, 12),
     class = rep("small_woody_stems", 12),
     direction = rep("north", 12),
     species = as.character(nss_sp), # species from above
@@ -86,7 +89,7 @@ for(i in 1:nrow(vegdata)){
   nms_sp <- nms[,c(1,3,5,7,9,11,13,15,17,19,21,23)] # the odd values are species IDs
   nms_n <- nms[,c(2,4,6,8,10,12,14,16,18,20,22,24)] # the even values are counts
   nms_parts <- data.frame( # make a data frame for all the data
-    point_id = rep(i, 12), # use row number as point_id for now
+    point_id = rep(point_id_i, 12),
     class = rep("medium_woody_stems", 12),
     direction = rep("north", 12),
     species = as.character(nms_sp), # species from above
@@ -98,7 +101,7 @@ for(i in 1:nrow(vegdata)){
   nls_sp <- nls[,c(1,3,5,7,9,11,13,15,17,19,21,23)] # the odd values are species IDs
   nls_n <- nls[,c(2,4,6,8,10,12,14,16,18,20,22,24)] # the even values are counts
   nls_parts <- data.frame( # make a data frame for all the data
-    point_id = rep(i, 12), # use row number as point_id for now
+    point_id = rep(point_id_i, 12),
     class = rep("large_woody_stems", 12),
     direction = rep("north", 12),
     species = as.character(nls_sp), # species from above
@@ -110,7 +113,7 @@ for(i in 1:nrow(vegdata)){
   sss_sp <- sss[,c(1,3,5,7,9,11,13,15,17,19,21,23)] # the odd values are species IDs
   sss_n <- sss[,c(2,4,6,8,10,12,14,16,18,20,22,24)] # the even values are counts
   sss_parts <- data.frame( # make a data frame for all the data
-    point_id = rep(i, 12), # use row number as point_id for now
+    point_id = rep(point_id_i, 12),
     class = rep("small_woody_stems", 12),
     direction = rep("south", 12),
     species = as.character(sss_sp), # species from above
@@ -122,7 +125,7 @@ for(i in 1:nrow(vegdata)){
   sms_sp <- sms[,c(1,3,5,7,9,11,13,15,17,19,21,23)] # the odd values are species IDs
   sms_n <- sms[,c(2,4,6,8,10,12,14,16,18,20,22,24)] # the even values are counts
   sms_parts <- data.frame( # make a data frame for all the data
-    point_id = rep(i, 12), # use row number as point_id for now
+    point_id = rep(point_id_i, 12),
     class = rep("medium_woody_stems", 12),
     direction = rep("south", 12),
     species = as.character(sms_sp), # species from above
@@ -134,7 +137,7 @@ for(i in 1:nrow(vegdata)){
   sls_sp <- sls[,c(1,3,5,7,9,11,13,15,17,19,21,23)] # the odd values are species IDs
   sls_n <- sls[,c(2,4,6,8,10,12,14,16,18,20,22,24)] # the even values are counts
   sls_parts <- data.frame( # make a data frame for all the data
-    point_id = rep(i, 12), # use row number as point_id for now
+    point_id = rep(point_id_i, 12),
     class = rep("large_woody_stems", 12),
     direction = rep("south", 12),
     species = as.character(sls_sp), # species from above
