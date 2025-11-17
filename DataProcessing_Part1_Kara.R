@@ -2,7 +2,7 @@ library(readxl)
 
 vegdata <- read_excel("./EWPW_mastersheet2025_23oct2025.xlsx", sheet = "veg") # read in Kara's data
 vegdata <- as.data.frame(vegdata) # turn into data.frame
-View(vegdata)
+#View(vegdata)
 
 #prism
 # 31 - 42 = basal area
@@ -70,7 +70,7 @@ for(i in 1:nrow(vegdata)){
     edge_parts
     
   # NORTH - Small Woody Stems
-  nss <- vegdata[i, 45:68]  # isolate all data***************
+  nss <- vegdata[i, 48:72]  # isolate all data***************KM edited
   nss_sp <- nss[,c(1,3,5,7,9,11,13,15,17,19,21,23)] # the odd values are species IDs
   nss_n <- nss[,c(2,4,6,8,10,12,14,16,18,20,22,24)] # the even values are counts
   nss_parts <- data.frame( # make a data frame for all the data
@@ -82,7 +82,7 @@ for(i in 1:nrow(vegdata)){
   nss_parts
   
   # NORTH - Medium Woody Stems
-  nms <- vegdata[i, 70:93]  # isolate all data***************
+  nms <- vegdata[i, 73:97]  # isolate all data***************KM edited
   nms_sp <- nms[,c(1,3,5,7,9,11,13,15,17,19,21,23)] # the odd values are species IDs
   nms_n <- nms[,c(2,4,6,8,10,12,14,16,18,20,22,24)] # the even values are counts
   nms_parts <- data.frame( # make a data frame for all the data
@@ -94,7 +94,7 @@ for(i in 1:nrow(vegdata)){
   nms_parts
 
   # NORTH - Large Woody Stems
-  nls <- vegdata[i, 95:118] # isolate all data***************
+  nls <- vegdata[i, 98:122] # isolate all data***************KM edited
   nls_sp <- nls[,c(1,3,5,7,9,11,13,15,17,19,21,23)] # the odd values are species IDs
   nls_n <- nls[,c(2,4,6,8,10,12,14,16,18,20,22,24)] # the even values are counts
   nls_parts <- data.frame( # make a data frame for all the data
@@ -106,7 +106,7 @@ for(i in 1:nrow(vegdata)){
   nls_parts
   
   # SOUTH - Small Woody Stems
-  sss <- vegdata[i, 120:143]  # isolate all data***************
+  sss <- vegdata[i, 123:147]  # isolate all data***************KM edited
   sss_sp <- sss[,c(1,3,5,7,9,11,13,15,17,19,21,23)] # the odd values are species IDs
   sss_n <- sss[,c(2,4,6,8,10,12,14,16,18,20,22,24)] # the even values are counts
   sss_parts <- data.frame( # make a data frame for all the data
@@ -118,7 +118,7 @@ for(i in 1:nrow(vegdata)){
   sss_parts
   
   # SOUTH - Medium Woody Stems
-  sms <- vegdata[i, 145:168] # isolate all data***************
+  sms <- vegdata[i, 148:172] # isolate all data***************KM edited
   sms_sp <- sms[,c(1,3,5,7,9,11,13,15,17,19,21,23)] # the odd values are species IDs
   sms_n <- sms[,c(2,4,6,8,10,12,14,16,18,20,22,24)] # the even values are counts
   sms_parts <- data.frame( # make a data frame for all the data
@@ -130,7 +130,7 @@ for(i in 1:nrow(vegdata)){
   sms_parts
   
   # SOUTH - Large Woody Stems
-  sls <- vegdata[i, 170:193] # isolate all data***************
+  sls <- vegdata[i, 173:197] # isolate all data***************KM edited
   sls_sp <- sls[,c(1,3,5,7,9,11,13,15,17,19,21,23)] # the odd values are species IDs
   sls_n <- sls[,c(2,4,6,8,10,12,14,16,18,20,22,24)] # the even values are counts
   sls_parts <- data.frame( # make a data frame for all the data

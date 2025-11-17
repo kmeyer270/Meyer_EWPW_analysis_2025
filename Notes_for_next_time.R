@@ -40,7 +40,12 @@ for(i in 1:length(unique(woodystems$point_id))){
   woodystems_i <- subset(woodystems, point_id == i)
   
   point_id_i = woodystems_i$point_id
-  AvgPrism_i = 0
+  
+  intrees_i <- 
+  edgetrees <- ifelse(3 == )
+    
+    
+  AvgPrism_i = 
   AvgNoSmSap_i = 0
   AvgNoMedSap_i = 0
   AvgNoLgSap_i = 0
