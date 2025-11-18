@@ -1,7 +1,7 @@
 vegdata <- read.csv("./otherveg_cleaned.csv") # read in veg data
 woodydata <- read.csv("./woodystems_cleaned.csv") # read in veg data
 data1 <- cbind(vegdata, woodydata)
-#data1 <- subset(data1, studyarea == "michaux")
+data1 <- subset(data1, studyarea == "moshannon")
 
 ##########
 
@@ -54,11 +54,11 @@ library(AICcmodavg)
 nullmod <- glm(response ~ 1, data = data1, family = "binomial")
 
 #linear
-bgmod <- glm(response ~ perc_bare + studyarea, data = data1, family = "binomial")
+bgmod <- glm(response ~ perc_bare, data = data1, family = "binomial")
 llmod <- glm(response ~ perc_ll, data = data1, family = "binomial")
 grassmod <- glm(response ~ perc_grass, data = data1, family = "binomial")
 forbmod <- glm(response ~ perc_forb, data = data1, family = "binomial")
-rubusmod <- glm(response ~ perc_Rubus, data = data1, family = "binomial")
+#rubusmod <- glm(response ~ perc_Rubus, data = data1, family = "binomial")
 basalmod <- glm(response ~ BasalArea, data = data1, family = "binomial")
 smstemsmod <- glm(response ~ AvgNoSmStem, data = data1, family = "binomial")
 medstemsmod <- glm(response ~ AvgNoMedStem, data = data1, family = "binomial")
@@ -69,7 +69,7 @@ bgmod2 <- glm(response ~ perc_bare + I(perc_bare^2), data = data1, family = "bin
 llmod2 <- glm(response ~ perc_ll + I(perc_ll^2), data = data1, family = "binomial")
 grassmod2 <- glm(response ~ perc_grass + I(perc_grass^2), data = data1, family = "binomial")
 forbmod2 <- glm(response ~ perc_forb + I(perc_forb^2), data = data1, family = "binomial")
-rubusmod2 <- glm(response ~ perc_Rubus + I(perc_Rubus^2), data = data1, family = "binomial")
+#rubusmod2 <- glm(response ~ perc_Rubus + I(perc_Rubus^2), data = data1, family = "binomial")
 basalmod2 <- glm(response ~ BasalArea + I(BasalArea^2), data = data1, family = "binomial")
 smstemsmod2 <- glm(response ~ AvgNoSmStem + I(AvgNoSmStem^2), data = data1, family = "binomial")
 medstemsmod2 <- glm(response ~ AvgNoMedStem + I(AvgNoMedStem^2), data = data1, family = "binomial")
@@ -82,7 +82,7 @@ modlist1 <- list(nullmod = nullmod,
                  llmod = llmod, 
                  grassmod = grassmod, 
                  forbmod = forbmod,
-                 rubusmod = rubusmod, 
+                 #rubusmod = rubusmod, 
                  basalmod = basalmod,
                  smstemsmod = smstemsmod,
                  medstemsmod = medstemsmod, 
@@ -92,7 +92,7 @@ modlist1 <- list(nullmod = nullmod,
                  llmod2 = llmod2, 
                  grassmod2 = grassmod2, 
                  forbmod2 = forbmod2,
-                 rubusmod2 = rubusmod2, 
+                 #rubusmod2 = rubusmod2, 
                  basalmod2 = basalmod2,
                  smstemsmod2 = smstemsmod2,
                  medstemsmod2 = medstemsmod2, 
@@ -102,7 +102,7 @@ aictab(modlist1)
 
 # predicting transect with new "plot" data
 newdat <- data.frame(AvgNoLgStem = seq(0,max(data1$AvgNoLgStem),length.out=100)) 
-pred1 <- predict(largestemsmod2, newdat, type="link", se.fit=TRUE)
+pred1 <- predict(largestemsmod, newdat, type="link", se.fit=TRUE)
 
 critval <- 1.96 ## approx 95% CI
 pred1$upr <- pred1$fit + (critval * pred1$se.fit)
