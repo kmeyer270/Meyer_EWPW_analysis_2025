@@ -55,7 +55,7 @@ aictab(modlist1)
 
 ##
 
-library(ggeffects);library(ggplot2)
+library(ggeffects); library(ggplot2)
 
 pred_stems <- ggpredict(largestemsmod2, terms = "AvgNoLgStem [all]")
 
@@ -65,10 +65,8 @@ ggplot(pred_stems, aes(x = x, y = predicted)) +
   geom_line(color = "black", size = 1.1) +
   labs(x = "Woody Stem Density (stems/40m2)", y = "EWPW Use probability") +
   theme_bw(base_size = 13) +
+  geom_segment(aes(x = 0, y = 0.52, xend = 125, yend = 0.52)) +
   theme(panel.grid = element_blank(),
         axis.line = element_line(color = "black", linewidth = 0.6),
         axis.text = element_text(size = 14)
   )
-
-
-
